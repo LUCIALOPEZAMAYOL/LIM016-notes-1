@@ -25,15 +25,14 @@ export const ModalEdit = ({note, arrayNotes, setArrayNotes}) => {
     e.preventDefault();
     updateNote(note.id, {title: e.target.title.value, description:e.target.description.value})
     .then((response) => {
-      arrayNotes.forEach(element => {
+      const temp = [...arrayNotes];
+      temp.forEach(element => {
         if(element.id === note.id){
           element.title = e.target.title.value;
-          element.description = e.target.description.value;
-          const temp = [...arrayNotes];
+          element.description = e.target.description.value;          
           setArrayNotes(temp);
         }
       });
-      note.title = e.target.title.value;
     })
     .catch((error) => {
     });
